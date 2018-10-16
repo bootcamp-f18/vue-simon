@@ -7,7 +7,9 @@ Vue.component('timer', {
     data() {
         return {
             message: 'Click the <strong>Start Game</strong> button to begin!',
-            remaining: ''
+            remaining: '',
+            intervalId: null,
+            maxSecondsToWait: 10
         }
     },
 
@@ -15,17 +17,17 @@ Vue.component('timer', {
 
         let self = this;
 
-        self.$parent.$on('stateChange', function(event) {
+        self.$on('stateChange', function(event) {
 
             switch (event) {
 
                 case 'capturing':
-                    // do stuff
-                    // break;
+                    self.startTimer();
+                    break;
 
                 case 'playing':
-                    // do stuff
-                    // break;
+                    self.stopTimer('Watch closely!');
+                    break;
 
                 default:
                     console.log("Timer: state changed to [" + event + "]");
@@ -33,6 +35,34 @@ Vue.component('timer', {
             }
 
         });
+
+    },
+
+    methods: {
+
+        startTimer: function () {
+            if (this.intervalId === null) {
+                this.remaining = this.maxSecondsToWait;
+                this.message = '';
+                this.intervalId = setInterval(this.tick, 1000);
+            }
+        },
+
+        stopTimer: function (text) {
+            clearInterval(this.intervalId);
+            this.message = text;
+            this.remaining = '';
+            this.intervalId = null;
+        },
+
+        tick: function () {
+            console.log("Tick!");
+            this.remaining--;
+            if (this.remaining === 0) {
+                this.stopTimer('Time expired! Click <strong>Start Game</strong> to begin a new game!');
+                // this.$emit('expired');
+            }
+        }
 
     }
 
@@ -63,7 +93,6 @@ var app = new Vue({
         playSequence: function () {
 
             let self = this;
-            // self.message = "Play attention...here we go!";
             self.$emit('stateChange', 'playing');
 
             let intervalId = setInterval(function () {
@@ -75,7 +104,6 @@ var app = new Vue({
                 else {
                     clearInterval(intervalId);
                     self.playingId = 0;
-                    // self.message = "Your turn!";
                     self.$emit('stateChange', 'capturing');
                 }
 
