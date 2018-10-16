@@ -8,8 +8,3 @@
 .bg-danger.red, .bg-warning.yellow, .bg-success.green, .bg-primary.blue {
     opacity: 1;
 }
-
-.wow {
-    text-transform: uppercase;
-    font-weight: bold;
-}
