@@ -17,9 +17,11 @@ Vue.component('timer', {
 
         let self = this;
 
-        self.$on('stateChange', function(event) {
+        self.$parent.$on('stateChange', function(newState) {
 
-            switch (event) {
+            console.log(newState);
+
+            switch (newState) {
 
                 case 'capturing':
                     self.startTimer();
@@ -30,7 +32,7 @@ Vue.component('timer', {
                     break;
 
                 default:
-                    console.log("Timer: state changed to [" + event + "]");
+                    console.log("Timer: state changed to [" + newState + "]");
 
             }
 
