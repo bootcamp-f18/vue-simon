@@ -1,0 +1,15 @@
+[v-cloak] > * { display:none }
+[v-cloak]::before { content: "loading…" }
+
+.muted {
+    opacity: .2;
+}
+
+.bg-danger.red, .bg-warning.yellow, .bg-success.green, .bg-primary.blue {
+    opacity: 1;
+}
+
+.wow {
+    text-transform: uppercase;
+    font-weight: bold;
+}

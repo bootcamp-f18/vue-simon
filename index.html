@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="main.css" type="text/css">
+
+    <title>Vue Simon</title>
+  </head>
+  <body class="container text-center">
+    <h1 class="mt-5 mb-5">Vue Simon</h1>
+
+    <div id="app" v-cloak>
+
+        <div class="mb-5" id="messages">
+            <span v-html="message"></span>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col m-1">
+                <div v-on:click="tap('red')" class="bg-danger float-right muted" v-bind:class="currentButton" style="height: 125px; width: 125px; clip-path: circle(100% at 100% 100%);"></div>
+            </div>
+            <div class="col m-1">
+                <div v-on:click="tap('yellow')" class="bg-warning muted" v-bind:class="currentButton" style="height: 125px; width: 125px; clip-path: circle(100% at 0 100%);"></div>
+            </div>
+        </div>
+        <div class="row no-gutters mb-2">
+            <div class="col m-1">
+                <div v-on:click="tap('green')" class="bg-success float-right muted" v-bind:class="currentButton" style="height: 125px; width: 125px; clip-path: circle(100% at 100% 0);"></div>
+            </div>
+            <div class="col m-1">
+                <div v-on:click="tap('blue')" class="bg-primary muted" v-bind:class="currentButton" style="height: 125px; width: 125px; clip-path: circle(100% at 0 0);"></div>
+            </div>
+        </div>
+
+        <button class="mt-5 btn btn-secondary" v-on:click="playSequence">Start Game</button>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+    <script src="app.js"></script>
+  </body>
+</html>
