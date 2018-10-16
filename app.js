@@ -24,6 +24,7 @@ Vue.component('timer', {
             switch (newState) {
 
                 case 'capturing':
+                    self.stopTimer();
                     self.startTimer();
                     break;
 
@@ -77,7 +78,8 @@ var app = new Vue({
     data: {
         currentButton: '',
         sequence: ['blue', 'red', 'red', 'yellow', 'green', 'yellow'],
-        playingId: 0
+        playingId: 0,
+        timerIsActive: false
     },
 
     methods: {
@@ -90,6 +92,11 @@ var app = new Vue({
             setTimeout(function() {
                 self.currentButton = '';
             }, 300);
+
+            if (self.timerIsActive) {
+                self.$emit('stateChange', 'capturing');
+            }
+
         },
 
         playSequence: function () {
@@ -107,6 +114,7 @@ var app = new Vue({
                     clearInterval(intervalId);
                     self.playingId = 0;
                     self.$emit('stateChange', 'capturing');
+                    self.timerIsActive = true;
                 }
 
             }, 600);
